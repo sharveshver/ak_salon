@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>AK Salon | Luxury Men's Grooming & Styling</title>
+<style>
+/* Reset and Edge-to-Edge Screen Fitting Constraints */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary: #C5A880;       /* Champagne Luxury Gold */
+    --primary-hover: #D4AF37; /* Radiant Metallic Gold */
+    --dark: #0B1325;          /* Midnight Luxury Blue */
+    --dark-surface: #111827;  /* Deep Matte Charcoal */
+    --light-bg: #F9F6F0;      /* Warm Luxury Silk/Ivory */
+    --card-bg: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #4B5563;
+    --danger: #DC2626;        
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal broken styling across responsive screens */
+    background: var(--light-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Header & Navigation Bar */
+header {
+    background: rgba(11, 19, 37, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.logo {
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: #E5E7EB;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 0;
+    white-space: nowrap;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Full Screen Dynamic Hero Section */
+.hero {
+    height: 100vh;
+    height: -webkit-fill-available; /* Adapts beautifully to mobile browser toolbar scaling */
+    min-height: 560px;
+    width: 100vw;
+    margin-top: -90px; 
+    position: relative;
+    background: linear-gradient(rgba(11, 19, 37, 0.75), rgba(11, 19, 37, 0.92)), 
+                url("https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=1600") center center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px;
+}
+
+.hero-content {
+    max-width: 850px;
+    width: 100%;
+    padding-top: 90px; 
+}
+
+.hero-content h1 {
+    font-size: clamp(34px, 5.5vw, 64px); 
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.15;
+}
+
+.hero-content h1 span {
+    color: var(--primary);
+    display: block;
+    font-size: clamp(38px, 6.5vw, 72px);
+    margin-top: 8px;
+}
+
+.hero-content p {
+    font-size: clamp(15px, 2.2vw, 18px);
+    margin-bottom: 35px;
+    color: #D1D5DB;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Global Grid Container Structures */
+section {
+    padding: clamp(60px, 8vw, 120px) 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(24px, 3.5vw, 32px);
+    font-weight: 700;
+    margin-bottom: 16px;
+    position: relative;
+    padding-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--dark);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--primary);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: clamp(40px, 6vw, 70px);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.bg-white-wrapper {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #FFFFFF;
+    border-top: 1px solid rgba(0,0,0,0.02);
+    border-bottom: 1px solid rgba(0,0,0,0.02);
+}
+
+/* About Layout */
+.about {
+    text-align: center;
+}
+.about p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--text-muted);
+    line-height: 1.9;
+    font-weight: 300;
+}
+
+/* Micro Grid System for Screen Adaptability */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 40px 24px;
+    background: #FDFDFD;
+    border: 1px solid rgba(197, 168, 128, 0.15);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: #FFFFFF;
+    padding: 45px 30px;
+    text-align: center;
+    border: 1px solid rgba(11, 19, 37, 0.08);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: var(--dark);
+    border-color: var(--dark);
+}
+
+.card:hover h3, .card:hover p { color: #FFFFFF; }
+.card .icon { font-size: 32px; margin-bottom: 20px; display: block; }
+.card h3 { font-size: 17px; margin-bottom: 12px; text-transform: uppercase; color: var(--dark); }
+.card p { font-size: 14px; color: var(--text-muted); }
+
+/* Pricing Elements */
+.pricing-container { max-width: 750px; margin: 0 auto; }
+.pricing-menu { background: #FFFFFF; padding: clamp(20px, 4vw, 45px); border: 1px solid rgba(197, 168, 128, 0.2); }
+.pricing-item { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; position: relative; }
+.pricing-item::after { content: ''; position: absolute; left: 0; right: 0; bottom: 6px; border-bottom: 1px dotted #D1CFCB; z-index: 1; }
+.pricing-name { background: #FFFFFF; padding-right: 12px; font-weight: 600; color: var(--dark); position: relative; z-index: 2; font-size: 15px; }
+.pricing-price { background: #FFFFFF; padding-left: 12px; font-weight: 700; color: var(--primary); position: relative; z-index: 2; font-size: 15px; }
+
+/* Interactive Input Elements */
+.btn {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    text-decoration: none;
+    padding: 16px 36px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--primary);
+    color: var(--dark);
+    box-shadow: 0 8px 20px rgba(197, 168, 128, 0.2);
+}
+
+.btn-delete {
+    background: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    text-transform: uppercase;
+}
+
+/* Review System */
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 50px; }
+.review-card { background: #FFFFFF; padding: 35px 25px; border: 1px solid rgba(11, 19, 37, 0.06); display: flex; flex-direction: column; justify-content: space-between; }
+.stars { color: var(--primary); margin-bottom: 16px; font-size: 12px; }
+.review-text { font-style: italic; color: var(--text-muted); margin-bottom: 20px; font-size: 14px; flex-grow: 1; }
+.client-name { font-weight: 700; color: var(--dark); font-size: 13px; text-transform: uppercase; }
+
+.review-form-container { max-width: 580px; margin: 50px auto 0; background: #FFFFFF; padding: clamp(20px, 4vw, 45px); border: 1px solid rgba(197, 168, 128, 0.2); }
+.review-form-container h3 { margin-bottom: 25px; font-size: 17px; text-transform: uppercase; text-align: center; color: var(--dark); }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 11px; text-transform: uppercase; color: var(--dark); }
+.form-control { width: 100%; padding: 12px; border: 1px solid #E5E7EB; font-size: 14px; background: var(--light-bg); }
+.form-control:focus { outline: none; border-color: var(--primary); background: #FFFFFF; }
+
+/* Contact Component block layout */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
+.info-box { background: #FFFFFF; padding: clamp(20px, 4vw, 45px); border: 1px solid rgba(11, 19, 37, 0.06); }
+.info-box h3 { margin-bottom: 20px; text-transform: uppercase; font-size: 15px; color: var(--dark); }
+.info-box p { margin-bottom: 16px; font-size: 14px; color: var(--text-muted); }
+.cta-box { background: var(--dark); color: white; padding: clamp(20px, 4vw, 45px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 1px solid rgba(197, 168, 128, 0.25); }
+.cta-box h3 { font-size: 19px; color: var(--primary); margin-bottom: 12px; text-transform: uppercase; }
+.cta-box p { margin-bottom: 30px; color: #9CA3AF; font-size: 14px; max-width: 380px; }
+
+/* Footer */
+footer {
+    background: #060B15;
+    color: #6B7280;
+    text-align: center;
+    padding: 35px 20px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(197, 168, 128, 0.1);
+}
+
+/* Breakpoints for dynamic navigation compression */
+@media (max-width: 850px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 16px 20px;
+        gap: 12px;
+    }
+    .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero {
+        margin-top: 0; 
+        height: calc(100vh - 120px);
+    }
+    .hero-content {
+        padding-top: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <div class="logo">✂ AK Salon</div>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#features">Why Us</a>
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="hero-content">
+        <h1>Elevate Your Style At <span>AK Salon</span></h1>
+        <p>Premium Haircuts, Sharp Beard Styling, Refreshing Facials, and Exceptional Grooming Services.</p>
+        <a href="https://wa.me/918754604191?text=Hello%20AK%20Salon,%20I%20would%20like%20to%20book%20an%20appointment." class="btn" target="_blank">Book Appointment</a>
+    </div>
+</div>
+
+<section id="about" class="about">
+    <h2 class="section-title">About Us</h2>
+    <p>
+        Welcome to AK Salon, where premium craftsmanship meets modern styling. Our expert team specializes in bespoke haircuts, precision beard tailoring, skin therapies, and trendsetting hair color solutions. We treat grooming not just as a routine, but as an experience centered entirely around your ultimate satisfaction and confidence.
+    </p>
+</section>
+
+<div class="bg-white-wrapper">
+    <section id="features">
+        <h2 class="section-title">Why Choose Us</h2>
+        <p class="section-subtitle">We offer an unmatched premium grooming experience tailored to you</p>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <span style="font-size: 32px;">⭐</span>
+                <h3>Experienced Stylists</h3>
+                <p>Our professionals keep up with the latest trends to deliver clean cuts and custom styles.</p>
+            </div>
+            <div class="feature-item">
+                <span style="font-size: 32px;">✨</span>
+                <h3>Premium Products</h3>
+                <p>We use top-tier, skin-safe products and hair tonics to ensure long-lasting freshness.</p>
+            </div>
+            <div class="feature-item">
+                <span style="font-size: 32px;">🧼</span>
+                <h3>Hygiene Guaranteed</h3>
+                <p>All tools are fully sanitized before every use to maintain strict health and safety conditions.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">Explore our wide selection of professional grooming options</p>
+    
+    <div class="services-grid">
+        <div class="card">
+            <span class="icon">✂</span>
+            <h3>Hair Cut</h3>
+            <p>Modern, classic, and precision haircuts customized for your unique look.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🧔</span>
+            <h3>Beard Styling</h3>
+            <p>Sharp detailing, clean lineups, and hot towel beard conditioning.</p>
+        </div>
+        <div class="card">
+            <span class="icon">💆</span>
+            <h3>Facial Care</h3>
+            <p>Rejuvenating treatments designed to deep-clean, hydrate, and refresh your skin.</p>
+        </div>
+        <div class="card">
+            <span class="icon">🎨</span>
+            <h3>Hair Coloring</h3>
+            <p>Premium, safe coloring products ranging from grey coverage to vibrant highlights.</p>
+        </div>
+    </div>
+</section>
+
+<div class="bg-white-wrapper">
+    <section id="pricing">
+        <h2 class="section-title">Pricing Menu</h2>
+        <p class="section-subtitle">Fair and transparent pricing for our premium service menu</p>
+        
+        <div class="pricing-container">
+            <div class="pricing-menu">
+                <div class="pricing-item">
+                    <span class="pricing-name">Classic Haircut & Styling</span>
+                    <span class="pricing-price">₹200</span>
+                </div>
+                <div class="pricing-item">
+                    <span class="pricing-name">Beard Trim & Razor Sharp Lineup</span>
+                    <span class="pricing-price">₹100</span>
+                </div>
+                <div class="pricing-item">
+                    <span class="pricing-name">Premium Skin Refreshing Facial</span>
+                    <span class="pricing-price">₹400</span>
+                </div>
+                <div class="pricing-item">
+                    <span class="pricing-name">Hair Color & Natural Highlights</span>
+                    <span class="pricing-price">₹500</span>
+                </div>
+                <div class="pricing-item">
+                    <span class="pricing-name">The Executive Combo (Hair + Beard + Facial)</span>
+                    <span class="pricing-price">₹650</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section id="reviews">
+    <h2 class="section-title">Client Reviews</h2>
+    <p class="section-subtitle">Read what our regular clients say or leave your experience below</p>
+    
+    <div class="reviews-grid" id="reviewsContainer"></div>
+
+    <div class="review-form-container">
+        <h3>Share Your Experience</h3>
+        <form id="reviewForm">
+            <div class="form-group">
+                <label for="reviewerName">Your Name</label>
+                <input type="text" id="reviewerName" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="reviewRating">Rating</label>
+                <select id="reviewRating" class="form-control">
+                    <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                    <option value="3">⭐⭐⭐ (3/5)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="reviewComments">Your Review</label>
+                <textarea id="reviewComments" class="form-control" rows="3" placeholder="How was your grooming experience?" required></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Submit Live Review</button>
+        </form>
+    </div>
+</section>
+
+<div class="bg-white-wrapper">
+    <section id="contact">
+        <h2 class="section-title">Visit & Contact Us</h2>
+        <p class="section-subtitle">Reach out or drop by to elevate your style routine</p>
+        
+        <div class="contact-grid">
+            <div class="info-box">
+                <h3>Our Schedule</h3>
+                <p><strong>Monday - Saturday:</strong> 9:00 AM - 9:00 PM</p>
+                <p><strong>Sunday:</strong> 9:00 AM - 4:00 PM</p>
+                <hr style="border: 0; border-top: 1px solid #EAE6DF; margin: 15px 0;">
+                <p><strong>Phone Support:</strong> +91 8754604191</p>
+                <p><strong>Address:</strong> Main Road, Tamil Nadu, India</p>
+            </div>
+            
+            <div class="cta-box">
+                <h3>Ready for a Fresh Look?</h3>
+                <p>Skip the waiting queue by scheduling a preferred slot directly through WhatsApp chat instant booking.</p>
+                <a href="https://wa.me/918754604191?text=Hello%20AK%20Salon,%20I%20want%20to%20book%20an%20appointment." class="btn" target="_blank">Book Via WhatsApp</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    &copy; 2026 AK Salon | Crafted for Premium Men's Grooming. All Rights Reserved.
+</footer>
+
+<script>
+const defaultReviews = [
+    { id: "def-1", name: "Rajesh Kumar", stars: "⭐⭐⭐⭐⭐", text: "Best hair styling experience around! The attention to detail during the beard lineup is incredible. Found my permanent shop.", isEditable: false },
+    { id: "def-2", name: "Amit Sharma", stars: "⭐⭐⭐⭐⭐", text: "Super clean salon and polite staff. The facial care treatment left me feeling incredibly relaxed. Highly recommended!", isEditable: false },
+    { id: "def-3", name: "Vikram Thompson", stars: "⭐⭐⭐⭐⭐", text: "Excellent value for money. Booking via WhatsApp is extremely fast and convenient. They respect appointment times perfectly.", isEditable: false }
+];
+
+const container = document.getElementById('reviewsContainer');
+const form = document.getElementById('reviewForm');
+
+function loadReviews() {
+    container.innerHTML = "";
+    let stored = localStorage.getItem('salon_reviews');
+    let reviewsList = stored ? JSON.parse(stored) : defaultReviews;
+    
+    if (!stored) {
+        localStorage.setItem('salon_reviews', JSON.stringify(defaultReviews));
+    }
+
+    reviewsList.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        
+        let deleteBtnHtml = item.isEditable ? `<button class="btn-delete" onclick="deleteReview('${item.id}')">Delete My Review</button>` : '';
+
+        card.innerHTML = `
+            <div>
+                <div class="stars">${item.stars}</div>
+                <p class="review-text">"${item.text}"</p>
+                <p class="client-name">- ${item.name}</p>
+            </div>
+            ${deleteBtnHtml}
+        `;
+        container.appendChild(card);
+    });
+}
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nameInput = document.getElementById('reviewerName').value;
+    const ratingInput = document.getElementById('reviewRating').value;
+    const commentInput = document.getElementById('reviewComments').value;
+    
+    let starString = "";
+    for(let i=0; i<parseInt(ratingInput); i++) {
+        starString += "⭐";
+    }
+
+    const newReview = {
+        id: "user-" + Date.now(),
+        name: nameInput,
+        stars: starString,
+        text: commentInput,
+        isEditable: true 
+    };
+
+    let currentData = JSON.parse(localStorage.getItem('salon_reviews')) || defaultReviews;
+    currentData.push(newReview);
+    localStorage.setItem('salon_reviews', JSON.stringify(currentData));
+
+    loadReviews();
+    form.reset();
+});
+
+function deleteReview(targetId) {
+    if(confirm("Are you sure you want to delete your review?")) {
+        let currentData = JSON.parse(localStorage.getItem('salon_reviews')) || defaultReviews;
+        let updatedData = currentData.filter(review => review.id !== targetId);
+        localStorage.setItem('salon_reviews', JSON.stringify(updatedData));
+        loadReviews(); 
+    }
+}
+
+window.onload = loadReviews;
+</script>
+
+</body>
+</html>
